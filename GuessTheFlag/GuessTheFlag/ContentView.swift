@@ -36,9 +36,7 @@ struct ContentView: View {
                     }) {
                         Image(self.countries[index])
                             .renderingMode(.original)
-                            .clipShape(Capsule())
-                            .overlay(Capsule().stroke(Color.black, lineWidth: 1))
-                            .shadow(color: .black, radius: 2)
+                            .flagImage()
                     }
                 }
                 Spacer()
@@ -70,5 +68,20 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct FlagImage: ViewModifier {
+    func body(content: Content) -> some View {
+        return content
+            .clipShape(Capsule())
+            .overlay(Capsule().stroke(Color.black, lineWidth: 1))
+            .shadow(color: .black, radius: 2)
+    }
+}
+
+extension View {
+    func flagImage() -> some View {
+        self.modifier(FlagImage())
     }
 }
