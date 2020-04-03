@@ -14,6 +14,11 @@ struct ContentView: View {
     @State private var rootWord: String = ""
     @State private var newWord: String = ""
 
+    @State private var score: Int = 0
+    private var scoreDisplay: String {
+        return "Current word score: \(score)"
+    }
+
     @State private var errorTitle = ""
     @State private var errorMessage = ""
     @State private var showingError = false
@@ -29,12 +34,17 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                     Text($0)
                 }
+                Text(scoreDisplay)
             }
             .navigationBarTitle(rootWord)
             .onAppear(perform: startGame)
             .alert(isPresented: $showingError) {
                 Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
             }
+            .navigationBarItems(trailing:
+                Button(action: startGame) {
+                    Text("New word")
+            })
         }
     }
 
@@ -46,13 +56,16 @@ struct ContentView: View {
 
         let allWords = startWords.components(separatedBy: "\n")
         rootWord = allWords.randomElement() ?? "silkworm"
+        score = 0
+        usedWords = []
+        newWord = ""
     }
 
     func addNewWord() {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        guard answer.count > 2 else { return }
+        guard answer.count > 3 else { return }
 
-        guard isOriginal(word: answer) else {
+        guard isOriginal(word: answer), answer != rootWord else {
             wordError(title: "Word used already", message: "Be more original")
             return
         }
@@ -66,6 +79,8 @@ struct ContentView: View {
             wordError(title: "Word not possible", message: "That isn't a real word.")
             return
         }
+
+        score += answer.count
 
         usedWords.insert(answer, at: 0)
         newWord = ""
