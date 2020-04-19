@@ -29,7 +29,7 @@ struct ContentView: View {
     @State private var animationOpacity = 1.0
 
     // wrong answer
-    @State private var attempts: CGFloat = 0.0
+    @State private var animationShake: Bool = false
 
 
     var body: some View {
@@ -58,13 +58,13 @@ struct ContentView: View {
                                 .renderingMode(.original)
                                 .flagImage()
                                 .opacity(100.0)
-                        }.shake(self.attempts)
+                        }.shake(self.animationShake)
                         .rotation3DEffect(.degrees(self.animationRotateDegrees), axis: (x: 0, y: 1, z: 0))
                     } else {
                         Button(action: {
                             self.flagTapped(index)
                             withAnimation(.default) {
-                                self.attempts += 1.0
+                                self.animationShake = true
                                 self.animationOpacity = 0.25
                             }
                         }) {
@@ -87,19 +87,21 @@ struct ContentView: View {
         if number == correctAnswer {
             scoreTitle = "Correct"
             score += 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + self.animationDuration) {
+                self.showingScore = true
+            }
         } else {
             scoreTitle = "Wrong that's the flag of \(countries[number])"
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + self.animationDuration) {
-            self.showingScore = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + self.animationDuration/2) {
+                self.showingScore = true
+            }
         }
     }
 
     func askQuestion() {
         animationRotateDegrees = 0
         animationOpacity = 1.0
-        attempts = 0.0
+        animationShake = false
 
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
@@ -134,8 +136,9 @@ struct Shake: GeometryEffect {
 }
 
 extension View {
-    func shake(_ attempts: CGFloat) -> some View {
-        self.modifier(Shake(animatableData: attempts))
+    func shake(_ start: Bool) -> some View {
+        let attempts: CGFloat = start ? 1.0 : 0.0
+        return self.modifier(Shake(animatableData: attempts))
     }
 }
 
