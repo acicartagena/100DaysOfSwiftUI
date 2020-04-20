@@ -8,9 +8,23 @@
 
 import SwiftUI
 
+enum Screen {
+    case settings
+    case game
+}
+
 struct ContentView: View {
+
+    @State var activeScreen: Screen = .settings
+
     var body: some View {
-        Text("Hello, World!")
+        Group {
+            if activeScreen == .settings {
+                SettingsView()
+            } else {
+                GameView()
+            }
+        }
     }
 }
 
