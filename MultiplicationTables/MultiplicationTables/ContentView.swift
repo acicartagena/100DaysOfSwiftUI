@@ -20,7 +20,9 @@ struct ContentView: View {
     var body: some View {
         Group {
             if activeScreen == .settings {
-                SettingsView()
+                SettingsView() { _ in
+                    self.activeScreen = .game
+                }
             } else {
                 GameView()
             }
