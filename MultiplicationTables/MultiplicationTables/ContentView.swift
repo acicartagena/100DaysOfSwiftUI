@@ -26,7 +26,9 @@ struct ContentView: View {
     func containedView() -> AnyView {
         switch activeScreen {
         case .game(let questions):
-            return AnyView(GameView(questions: questions))
+            return AnyView(GameView(questions: questions) {
+                self.activeScreen = .settings
+            })
         case .settings:
             return AnyView(SettingsView() { questions in
                 self.activeScreen = .game(questions)

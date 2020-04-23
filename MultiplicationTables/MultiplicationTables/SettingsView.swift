@@ -57,19 +57,23 @@ struct SettingsView: View {
 }
 
 struct RoundedGradient: ViewModifier {
+
+    let startColor: Color
+    let endColor: Color
+
     func body(content: Content) -> some View {
         content
             .frame(minWidth: 0, maxWidth: .infinity)
             .foregroundColor(.white)
             .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue]), startPoint: .leading, endPoint: .trailing))
+            .background(LinearGradient(gradient: Gradient(colors: [startColor, endColor]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(30.0)
             .padding(.horizontal, 20)
     }
 }
 
 extension View {
-    func roundedGradient() -> some View {
-        self.modifier(RoundedGradient())
+    func roundedGradient(start: Color = .blue, end: Color = .purple) -> some View {
+        self.modifier(RoundedGradient(startColor: start, endColor: end))
     }
 }
