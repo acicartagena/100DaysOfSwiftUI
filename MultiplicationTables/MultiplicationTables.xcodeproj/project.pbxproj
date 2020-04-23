@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3557A065245175650008C255 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557A064245175650008C255 /* Questions.swift */; };
 		35C02563244D6C1800BC8890 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C02562244D6C1800BC8890 /* SettingsView.swift */; };
 		35C02565244D6C2200BC8890 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C02564244D6C2200BC8890 /* GameView.swift */; };
 		35D24051244C19D3001E5FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D24050244C19D3001E5FA4 /* AppDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3557A064245175650008C255 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		35C02562244D6C1800BC8890 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		35C02564244D6C2200BC8890 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		35D2404D244C19D3001E5FA4 /* MultiplicationTables.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiplicationTables.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +64,7 @@
 			children = (
 				35D24050244C19D3001E5FA4 /* AppDelegate.swift */,
 				35D24052244C19D3001E5FA4 /* SceneDelegate.swift */,
+				3557A064245175650008C255 /* Questions.swift */,
 				35D24054244C19D3001E5FA4 /* ContentView.swift */,
 				35C02562244D6C1800BC8890 /* SettingsView.swift */,
 				35C02564244D6C2200BC8890 /* GameView.swift */,
@@ -155,6 +158,7 @@
 				35D24051244C19D3001E5FA4 /* AppDelegate.swift in Sources */,
 				35C02563244D6C1800BC8890 /* SettingsView.swift in Sources */,
 				35D24053244C19D3001E5FA4 /* SceneDelegate.swift in Sources */,
+				3557A065245175650008C255 /* Questions.swift in Sources */,
 				35D24055244C19D3001E5FA4 /* ContentView.swift in Sources */,
 				35C02565244D6C2200BC8890 /* GameView.swift in Sources */,
 			);

@@ -10,7 +10,7 @@ import SwiftUI
 
 enum Screen {
     case settings
-    case game
+    case game(Questions)
 }
 
 struct ContentView: View {
@@ -19,15 +19,21 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if activeScreen == .settings {
-                SettingsView() { _ in
-                    self.activeScreen = .game
-                }
-            } else {
-                GameView()
-            }
+            containedView()
         }
     }
+
+    func containedView() -> AnyView {
+        switch activeScreen {
+        case .game(let questions):
+            return AnyView(GameView(questions: questions))
+        case .settings:
+            return AnyView(SettingsView() { questions in
+                self.activeScreen = .game(questions)
+            })
+        }
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
