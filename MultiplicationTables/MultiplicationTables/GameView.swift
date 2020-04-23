@@ -85,6 +85,7 @@ struct GameView: View {
 
         questionIndex += 1
         gameOver = questionIndex >= questions.questions.count
+        answer = ""
     }
 
     func goToSettings() {
