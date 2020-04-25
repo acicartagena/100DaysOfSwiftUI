@@ -39,6 +39,7 @@ struct ContentView: View {
             .navigationBarItems(trailing:
                 HStack {
                     EditButton()
+                        .padding()
                     Button(action: {
                         self.showingAddExpenses = true
                     }) {
