@@ -8,29 +8,76 @@
 
 import SwiftUI
 
-struct SecondView: View {
-    var name: String
-    @Environment(\.presentationMode) var presentationMode
+struct ContentView: View {
+
+    @ObservedObject var expenses = Expenses()
+    @State private var showingAddExpenses = false {
+        didSet {
+            print("showingAddExpenses: \(showingAddExpenses)")
+        }
+    }
 
     var body: some View {
-        VStack {
-            Text("Hello \(name)")
-            Button("Dismiss") {
-                self.presentationMode.wrappedValue.dismiss()
+        NavigationView {
+            List {
+                ForEach(expenses.items) { item in
+                    HStack {
+                        VStack {
+                            Text(item.name)
+                                .font(.headline)
+                            Text(item.type)
+                        }
+                        Spacer()
+                        Text("$\(item.amount)")
+                            .padding()
+                            .style(amount: item.amount)
+                    }
+                }
+                .onDelete(perform: removeItem)
             }
+            .navigationBarTitle("iExpenses")
+            .navigationBarItems(trailing:
+                HStack {
+                    EditButton()
+                    Button(action: {
+                        self.showingAddExpenses = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                }
+            )
+        }.sheet(isPresented: $showingAddExpenses) {
+            AddView(expenses: self.expenses)
         }
+    }
+
+    func removeItem(at offsets: IndexSet) {
+        expenses.items.remove(atOffsets: offsets)
     }
 }
 
-struct ContentView: View {
+struct StyleAmount: ViewModifier {
+    let amount: Int
 
-    @State private var showingSheet = false
-    var body: some View {
-        Button("Show sheet") {
-            self.showingSheet.toggle()
-        }.sheet(isPresented: $showingSheet) {
-            SecondView(name: "Angela")
+    var textColor: Color {
+        if amount < 10 {
+            return .green
+        } else if amount > 100 {
+            return .red
+        } else {
+            return .black
         }
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(textColor)
+    }
+}
+
+extension View {
+    func style(amount: Int) -> some View {
+        modifier(StyleAmount(amount: amount))
     }
 }
 
