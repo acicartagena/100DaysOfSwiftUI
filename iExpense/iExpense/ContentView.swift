@@ -11,11 +11,7 @@ import SwiftUI
 struct ContentView: View {
 
     @ObservedObject var expenses = Expenses()
-    @State private var showingAddExpenses = false {
-        didSet {
-            print("showingAddExpenses: \(showingAddExpenses)")
-        }
-    }
+    @State private var showingAddExpenses = false
 
     var body: some View {
         NavigationView {
