@@ -38,6 +38,10 @@ extension Mission {
             return "N/A"
         }
     }
+
+    var formattedCrewNames: String {
+        crew.map { $0.name }.joined(separator: ", ")
+    }
 }
 
 extension Mission: Identifiable { }

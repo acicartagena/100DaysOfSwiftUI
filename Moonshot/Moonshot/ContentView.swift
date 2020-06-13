@@ -9,13 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    let astronauts: [Astronaut] = Bundle.main.decode("astronauts.json")
-    let missions: [Mission] = Bundle.main.decode("missions.json")
+    let astronauts: [Astronaut]
+    let missions: [Mission]
+
+    let displayOptions = ["Launch", "Crew"]
+    @State private var selectedDisplayOption = 0
+
+    init(service: MoonshotDataProvider = MoonshotService.shared) {
+        self.astronauts = service.astronauts
+        self.missions = service.missions
+    }
 
     var body: some View {
         NavigationView {
             List(missions) { mission in
-                NavigationLink(destination: Text("detail view")) {
+                NavigationLink(destination: MissionView(mission: mission)) {
                     Image(mission.image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -25,11 +33,24 @@ struct ContentView: View {
                         Text(mission.displayName)
                             .font(.headline)
 
-                        Text(mission.formattedLaunchDate)
+                        if self.displayOptions[self.selectedDisplayOption] == "Launch" {
+                            Text(mission.formattedLaunchDate)
+                        } else {
+                            Text(mission.formattedCrewNames)
+                        }
+
                     }
                 }
 
-            }.navigationBarTitle("Moonshot")
+            }
+            .navigationBarTitle("Moonshot")
+            .navigationBarItems(trailing:
+                Picker("Display Options", selection: $selectedDisplayOption) {
+                    ForEach(0 ..< displayOptions.count) {
+                        Text(self.displayOptions[$0])
+                    }
+                }.pickerStyle(SegmentedPickerStyle())
+            )
         }
     }
 }

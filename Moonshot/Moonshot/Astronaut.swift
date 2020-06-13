@@ -14,5 +14,11 @@ struct Astronaut {
     let description: String
 }
 
+extension Astronaut {
+    var image: String {
+        id
+    }
+}
+
 extension Astronaut: Codable { }
 extension Astronaut: Identifiable { }
