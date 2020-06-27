@@ -45,6 +45,7 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .fontWeight(.black)
                 }
+
                 ForEach(0..<3) { index in
                     if index == self.correctAnswer {
                         Button(action: {
@@ -72,8 +73,37 @@ struct ContentView: View {
                                 .renderingMode(.original)
                                 .flagImage()
                         }.opacity(self.animationOpacity)
+                    VStack {
+                        if index == self.correctAnswer {
+                            Button(action: {
+                                self.flagTapped(index)
+                                withAnimation(.easeOut(duration: self.animationDuration)) {
+                                    self.animationRotateDegrees = 360
+                                    self.animationOpacity = 0.25
+                                }
+                            }) {
+                                Image(self.countries[index])
+                                    .renderingMode(.original)
+                                    .flagImage()
+                                    .opacity(100.0)
+                            }.shake(self.animationShake)
+                            .rotation3DEffect(.degrees(self.animationRotateDegrees), axis: (x: 0, y: 1, z: 0))
+                        } else {
+                            Button(action: {
+                                self.flagTapped(index)
+                                withAnimation(.default) {
+                                    self.animationShake = true
+                                    self.animationOpacity = 0.25
+                                }
+                            }) {
+                                Image(self.countries[index])
+                                    .renderingMode(.original)
+                                    .flagImage()
+                            }.opacity(self.animationOpacity)
+                        }
                     }
                 }
+
                 Spacer()
             }
         }.alert(isPresented: $showingScore) {
