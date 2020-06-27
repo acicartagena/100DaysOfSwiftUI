@@ -14,8 +14,6 @@ class Activity: Codable, Identifiable, ObservableObject {
         case count
     }
 
-
-
     init(name: String, count: Int = 0) {
         self.name = name
         self.count = count
@@ -40,28 +38,8 @@ class Activity: Codable, Identifiable, ObservableObject {
     }
 }
 
-
-class ActivityList: ObservableObject {
-    @Published private(set) var activities: [Activity]
-    var cancellables: [AnyCancellable] = []
-
-    init(activities: [Activity] = []) {
-        self.activities = activities
-
-        self.activities.forEach { [weak self] activity in
-            let cancellable = activity.$count.sink { [weak self] count in
-                print("activity: \(activity) count changed: \(count)")
-            }
-            self?.cancellables.append(cancellable)
-        }
+extension Activity: CustomStringConvertible {
+    var description: String {
+        return "Activity name: \(name) count: \(count)"
     }
-
-    func add(activity: Activity) {
-        let cancellable = activity.$count.sink { [weak self] count in
-            print("activity: \(activity) count changed: \(count)")
-        }
-        cancellables.append(cancellable)
-        activities.append(activity)
-    }
-
 }

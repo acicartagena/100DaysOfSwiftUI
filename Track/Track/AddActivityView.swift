@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddActivityView: View {
 
-    private let activityList: ActivityList = ActivityService.shared.activityList
+    private let activityProvider: ActivityProvider = ActivityService.shared
 
     @State private var activityName: String = ""
     @State private var showError: Bool = false
@@ -68,7 +68,7 @@ struct AddActivityView: View {
             return
         }
 
-        guard !activityList.activities.contains(where: { $0.name.lowercased() == activityNameLowercased }) else {
+        guard !activityProvider.activities.contains(where: { $0.name.lowercased() == activityNameLowercased }) else {activityProvider
             showError = true
             errorMessage = "Activity already exists"
             return
@@ -76,7 +76,7 @@ struct AddActivityView: View {
 
         print("save: \(self.activityName)")
         let activity = Activity(name: activityName)
-        activityList.add(activity: activity)
+        activityProvider.add(activity: activity)
         dismiss()
     }
 

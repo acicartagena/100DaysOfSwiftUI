@@ -4,13 +4,13 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @ObservedObject var activityList = ActivityService.shared.activityList
+    @ObservedObject var activityProvider = ActivityService.shared
     @State private var showingAddActivity = false
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(activityList.activities, id: \.name) { activity in
+                ForEach(activityProvider.activities, id: \.name) { activity in
                     NavigationLink(destination: ActivityDetailsView(activity: activity)) {
                         Text(activity.name)
                     }
