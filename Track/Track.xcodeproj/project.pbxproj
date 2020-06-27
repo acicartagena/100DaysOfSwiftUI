@@ -13,6 +13,7 @@
 		354F348024A71AC000585F0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354F347F24A71AC000585F0D /* Assets.xcassets */; };
 		354F348324A71AC000585F0D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354F348224A71AC000585F0D /* Preview Assets.xcassets */; };
 		354F348624A71AC000585F0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354F348424A71AC000585F0D /* LaunchScreen.storyboard */; };
+		354F348E24A71E2D00585F0D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F348D24A71E2D00585F0D /* Activity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		354F348224A71AC000585F0D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		354F348524A71AC000585F0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		354F348724A71AC000585F0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		354F348D24A71E2D00585F0D /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				354F347924A71ABF00585F0D /* AppDelegate.swift */,
 				354F347B24A71ABF00585F0D /* SceneDelegate.swift */,
+				354F348D24A71E2D00585F0D /* Activity.swift */,
 				354F347D24A71ABF00585F0D /* ContentView.swift */,
 				354F347F24A71AC000585F0D /* Assets.xcassets */,
 				354F348424A71AC000585F0D /* LaunchScreen.storyboard */,
@@ -148,6 +151,7 @@
 			files = (
 				354F347A24A71ABF00585F0D /* AppDelegate.swift in Sources */,
 				354F347C24A71ABF00585F0D /* SceneDelegate.swift in Sources */,
+				354F348E24A71E2D00585F0D /* Activity.swift in Sources */,
 				354F347E24A71ABF00585F0D /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

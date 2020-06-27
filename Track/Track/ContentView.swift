@@ -2,19 +2,6 @@
 
 import SwiftUI
 
-class Activity: ObservableObject {
-    let name: String
-    @Published var numberOfTimes: Int = 0
-
-    init(name: String) {
-        self.name = name
-    }
-}
-
-class ActivityList: ObservableObject {
-    @Published var acitivities: [Activity] = []
-}
-
 struct ContentView: View {
     var body: some View {
         Text("Hello, World!")
