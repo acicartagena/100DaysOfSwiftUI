@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		354F349024A7230F00585F0D /* Trapezoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F348F24A7230F00585F0D /* Trapezoid.swift */; };
 		354F349224A7243300585F0D /* Checkerboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F349124A7243300585F0D /* Checkerboard.swift */; };
+		354F349424A725A200585F0D /* Spirograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F349324A725A200585F0D /* Spirograph.swift */; };
 		3582FDB82496007700684466 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582FDB72496007700684466 /* AppDelegate.swift */; };
 		3582FDBA2496007700684466 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582FDB92496007700684466 /* SceneDelegate.swift */; };
 		3582FDBC2496007700684466 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3582FDBB2496007700684466 /* ContentView.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		354F348F24A7230F00585F0D /* Trapezoid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trapezoid.swift; sourceTree = "<group>"; };
 		354F349124A7243300585F0D /* Checkerboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkerboard.swift; sourceTree = "<group>"; };
+		354F349324A725A200585F0D /* Spirograph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spirograph.swift; sourceTree = "<group>"; };
 		3582FDB42496007700684466 /* Drawing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drawing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3582FDB72496007700684466 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3582FDB92496007700684466 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				3582FDCB249605EC00684466 /* Triangle.swift */,
 				3582FDD12496163E00684466 /* ColorCyclingCircle.swift */,
 				354F348F24A7230F00585F0D /* Trapezoid.swift */,
+				354F349324A725A200585F0D /* Spirograph.swift */,
 				354F349124A7243300585F0D /* Checkerboard.swift */,
 				3582FDCD2496071100684466 /* Arc.swift */,
 				3582FDCF2496141D00684466 /* Flower.swift */,
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354F349424A725A200585F0D /* Spirograph.swift in Sources */,
 				3582FDB82496007700684466 /* AppDelegate.swift in Sources */,
 				3582FDD22496163E00684466 /* ColorCyclingCircle.swift in Sources */,
 				3582FDBA2496007700684466 /* SceneDelegate.swift in Sources */,
