@@ -68,7 +68,7 @@ struct AddActivityView: View {
             return
         }
 
-        guard !activityProvider.activities.contains(where: { $0.name.lowercased() == activityNameLowercased }) else {activityProvider
+        guard !activityProvider.activities.contains(where: { $0.name.lowercased() == activityNameLowercased }) else {
             showError = true
             errorMessage = "Activity already exists"
             return
