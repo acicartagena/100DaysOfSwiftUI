@@ -8,11 +8,83 @@
 
 import SwiftUI
 
-class Order: ObservableObject {
+class ObservableOrder: ObservableObject {
+    @Published var order: Order
+
+    init(order: Order = Order()) {
+        self.order = order
+    }
+
+    var cost: Double {
+        order.cost
+    }
+
+    var hasValidAddress: Bool {
+        order.hasValidAddress
+    }
+
+
+    var type: Int {
+        get { order.type }
+        set { order.type = newValue }
+    }
+
+    var quantity: Int {
+        get { order.quantity }
+        set { order.quantity = newValue }
+    }
+
+    var specialRequestEnabled: Bool {
+        get { order.specialRequestEnabled }
+        set { order.specialRequestEnabled = newValue }
+    }
+
+    var extraFrosting: Bool {
+        get { order.extraFrosting }
+        set { order.extraFrosting = newValue }
+    }
+
+    var addSprinkles: Bool {
+        get { order.addSprinkles }
+        set { order.addSprinkles = newValue }
+    }
+
+    var name: String {
+        get { order.name }
+        set { order.name = newValue }
+    }
+
+    var streetAddress: String {
+        get { order.streetAddress }
+        set { order.streetAddress = newValue }
+    }
+
+    var city: String {
+        get { order.city }
+        set { order.city = newValue }
+    }
+
+    var zip: String {
+        get { order.zip }
+        set { order.zip = newValue }
+    }
+
+    func encoded() throws -> Data {
+        return try JSONEncoder().encode(order)
+    }
+}
+
+struct Order: Codable {
     static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
 
     var hasValidAddress: Bool {
-        if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
+
+        let processName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let processStreetAddress = streetAddress.trimmingCharacters(in: .whitespacesAndNewlines)
+        let processCity = city.trimmingCharacters(in: .whitespacesAndNewlines)
+        let processZip = zip.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if processName.isEmpty || processStreetAddress.isEmpty || processCity.isEmpty || processZip.isEmpty {
             return false
         }
 
@@ -39,10 +111,10 @@ class Order: ObservableObject {
         return cost
     }
 
-    @Published var type = 0
-    @Published var quantity = 3
+    var type = 0
+    var quantity = 3
 
-    @Published var specialRequestEnabled = false {
+    var specialRequestEnabled = false {
         didSet {
             if specialRequestEnabled == false {
                 extraFrosting = false
@@ -50,56 +122,11 @@ class Order: ObservableObject {
             }
         }
     }
-    @Published var extraFrosting = false
-    @Published var addSprinkles = false
+    var extraFrosting = false
+    var addSprinkles = false
 
-    @Published var name = ""
-    @Published var streetAddress = ""
-    @Published var city = ""
-    @Published var zip = ""
-
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        type = try container.decode(Int.self, forKey: .type)
-        quantity = try container.decode(Int.self, forKey: .quantity)
-
-        extraFrosting = try container.decode(Bool.self, forKey: .extraFrosting)
-        addSprinkles = try container.decode(Bool.self, forKey: .addSprinkles)
-
-        name = try container.decode(String.self, forKey: .name)
-        streetAddress = try container.decode(String.self, forKey: .streetAddress)
-        city = try container.decode(String.self, forKey: .city)
-        zip = try container.decode(String.self, forKey: .zip)
-    }
-
-    init() { }
-}
-
-extension Order: Codable {
-    enum CodingKeys: CodingKey {
-        case type
-        case quantity
-        case extraFrosting
-        case addSprinkles
-        case name
-        case streetAddress
-        case city
-        case zip
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encode(type, forKey: .type)
-        try container.encode(quantity, forKey: .quantity)
-        try container.encode(extraFrosting, forKey: .extraFrosting)
-        try container.encode(addSprinkles, forKey: .addSprinkles)
-        try container.encode(name, forKey: .name)
-        try container.encode(streetAddress, forKey: .streetAddress)
-        try container.encode(city, forKey: .city)
-        try container.encode(zip, forKey: .zip)
-    }
-
-
+    var name = ""
+    var streetAddress = ""
+    var city = ""
+    var zip = ""
 }
